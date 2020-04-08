@@ -1,6 +1,8 @@
 package com.naver.point;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,30 +35,49 @@ public class PointController extends HttpServlet {
 		//pathInfo
 		String command = request.getPathInfo();
 		
-		//Method 형식
+		//Method 형식 //get,post구분
 		String method = request.getMethod();
 		
 		//forward(true), redirect(false) 둘 중 하나선택
 		boolean check = true;
 		
-		//path를 담을 변수
+		//URL path를 담을 변수
 		String path ="";
 		
 		
 		if(command.equals("/pointList")) {
-			System.out.println("List");
+			path="../WEB-INF/views/point/pointList.jsp";
+			
 		}else if(command.equals("/pointAdd")) {
-			System.out.println("add");
+			if(method.equals("POST")) {
+				
+			}else {//GET
+				check=true;
+				path="../WEB-INF/views/point/pointAdd.jsp";
+			}
 		}else if(command.equals("/pointMod")) {
-			System.out.println("mod");
+			if(method.equals("POST")) {
+				
+			}else {
+				check=true;
+				path="../WEB-INF/views/point/pointMod.jsp";
+			}
 		}else if(command.equals("/pointSelect")) {
-			System.out.println("select");
+			path="../WEB-INF/views/point/pointSelect.jsp";
+			
 		}else if(command.equals("/pointDelete")) {
-			System.out.println("delete");
+
 		}else {
-			System.out.println("etc");
+
 		}
 		
+		//어떤 방식으로 어디로 보낼건지 체크 forward/redirect
+		if(check) {
+			RequestDispatcher view = request.getRequestDispatcher(path); 
+			view.forward(request, response);
+		}else {
+			response.sendRedirect(path);
+		}
 		
 	
 	}
