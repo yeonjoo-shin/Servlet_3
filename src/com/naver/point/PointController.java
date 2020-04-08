@@ -56,30 +56,32 @@ public class PointController extends HttpServlet {
 			
 		}else if(command.equals("/pointAdd")) {
 			if(method.equals("POST")) {
+			
 				PointDTO pointDTO = new PointDTO();
-				
+				System.out.println("post add");
 				pointDTO.setName(request.getParameter("name"));
 				pointDTO.setNum(Integer.parseInt(request.getParameter("num")));
 				pointDTO.setKor(Integer.parseInt(request.getParameter("kor")));
 				pointDTO.setEng(Integer.parseInt(request.getParameter("eng")));
 				pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
-				pointDTO.setTotal(Integer.parseInt(request.getParameter("total")));
-				pointDTO.setAvg(Integer.parseInt(request.getParameter("avg")));
+							
 				
-				int add=pointService.pointAdd(pointDTO);
-				path="../WEB-INF/views/point/pointList.jsp";
+				int result=pointService.pointAdd(pointDTO);
 				
-				if(add>0) {
-					System.out.println("성공");
-				}else {
-					System.out.println("실패");
-				}
-				
-				request.setAttribute("result",add);
+				if(result>0) {
+		               check = false;
+		               path = "./pointList";
+		            }else {
+		               check = false;
+		               path = "./pointList";
+		            }
 				
 			}else {//GET
+				System.out.println("점수입력창");
 				check=true;
 				path="../WEB-INF/views/point/pointAdd.jsp";
+				
+				
 			}
 		}else if(command.equals("/pointMod")) {
 			if(method.equals("POST")) {

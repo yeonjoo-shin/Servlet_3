@@ -91,11 +91,13 @@ public class PointDAO {
 		st.setInt(5,pointDTO.getMath());
 		st.setInt(6,pointDTO.getTotal());
 		st.setDouble(7, pointDTO.getAvg());
-		
+		System.out.println("save");
 		int result = st.executeUpdate();
+		System.out.println("save result");
 		st.close();
 		con.close();
 		return result;
+		
 	}
 	//4. Update
 	
