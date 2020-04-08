@@ -86,6 +86,6 @@
     </div>
      <button type="submit" class="btn btn-default">Submit</button>
 
-	<h1>Point Add form</h1>
+	
 </body>
 </html>

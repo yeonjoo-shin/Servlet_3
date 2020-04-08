@@ -76,7 +76,27 @@ public class PointDAO {
 		return pointDTO;
 	}
 	//3. Insert
-	
+	public int pointAdd(PointDTO pointDTO) throws Exception{
+		Connection con = DBConnect.getConnect();
+		
+		//쿼리문 작성
+		String sql = "insert into point values(?,?,?,?,?,?,?)";
+		//쿼리문 미리 전송
+		PreparedStatement st = con.prepareStatement(sql);
+		//? 값 세팅
+		st.setString(1,pointDTO.getName());
+		st.setInt(2, pointDTO.getNum());
+		st.setInt(3, pointDTO.getKor());
+		st.setInt(4, pointDTO.getEng());
+		st.setInt(5,pointDTO.getMath());
+		st.setInt(6,pointDTO.getTotal());
+		st.setDouble(7, pointDTO.getAvg());
+		
+		int result = st.executeUpdate();
+		st.close();
+		con.close();
+		return result;
+	}
 	//4. Update
 	
 	//5. Delete

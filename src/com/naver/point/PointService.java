@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PointService {
 	private PointDAO pointDAO;
-	//1.List
+	
 	
 	public PointService() {
 		this.pointDAO = new PointDAO();
@@ -20,5 +20,10 @@ public class PointService {
 	//3.delete
 	public int pointDelete(int num)throws Exception{
 		return pointDAO.pointDelete(num);
+	}
+	//4.insert
+	public int pointAdd(PointDTO pointDTO) throws Exception{
+		int result = pointDAO.pointAdd(pointDTO);
+		return result;
 	}
 }
