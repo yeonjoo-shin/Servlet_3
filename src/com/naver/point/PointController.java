@@ -77,7 +77,7 @@ public class PointController extends HttpServlet {
 		            }
 				
 			}else {//GET
-				System.out.println("점수입력창");
+				System.out.println("Point Input(점수입력창)");
 				check=true;
 				path="../WEB-INF/views/point/pointAdd.jsp";
 				
@@ -85,9 +85,27 @@ public class PointController extends HttpServlet {
 			}
 		}else if(command.equals("/pointMod")) {
 			if(method.equals("POST")) {
+				PointDTO pointDTO = new PointDTO();
 				
+				//수정할 정보들
+				pointDTO.setName(request.getParameter("name"));
+				pointDTO.setNum(Integer.parseInt(request.getParameter("num")));
+				pointDTO.setKor(Integer.parseInt(request.getParameter("kor")));
+				pointDTO.setEng(Integer.parseInt(request.getParameter("eng")));
+				pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
+				
+				int result = pointService.pointMod(pointDTO);
+				
+				
+		         check = false;
+		         path = "./pointSelect?num="+pointDTO.getNum();
+		            
 			}else {
 				check=true;
+				int num=Integer.parseInt(request.getParameter("num"));
+				PointDTO pointDTO = pointService.pointSelect(num);//선택페이지에서 번호를 기준으로 가져와서 넘기기
+				request.setAttribute("dto",pointDTO);
+				
 				path="../WEB-INF/views/point/pointMod.jsp";
 			}
 		}else if(command.equals("/pointSelect")) {

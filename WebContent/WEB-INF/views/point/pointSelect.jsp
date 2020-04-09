@@ -44,8 +44,7 @@
     <h1>Bootstrap Tutorial</h1>      
     <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
   </div>
-  <p>This is some text.</p>      
-  <p>This is another text.</p>      
+    
 </div>
 	<div class="container">
 		<div class="row">
@@ -72,6 +71,7 @@
 			
 			</table>
 			<a href="./pointDelete?num=${dto.num}" class="btn btn-danger">Delete</a>
+			<a href="./pointMod?num=${dto.num}" class="btn btn-primary">Update</a><!-- num을 기준으로 수정페이지로 넘어감 -->
 		</div>
 		
 	

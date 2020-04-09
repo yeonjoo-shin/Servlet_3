@@ -53,8 +53,7 @@
     <h1>Bootstrap Tutorial</h1>      
     <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
   </div>
-  <p>This is some text.</p>      
-  <p>This is another text.</p>      
+     
 </div>
 <div class="container">
   <h2>Point Input</h2>
@@ -62,7 +61,7 @@
   
     <div class="form-group">
       <label for="Name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" >
+      <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" ><!--name과 파라미터 이름 동일하게!! value값이 넘어감 -->
     </div>
     
     <div class="form-group">
@@ -84,8 +83,11 @@
       <label for="Math">Math:</label>
       <input type="text" class="form-control" id="math" placeholder="Enter Math" name="math" >
     </div>
+    
      <button type="submit" class="btn btn-default">Submit</button>
-
-	
+	<!--x form태그안에 데이터를 db로 보내기위해서 a태그x(해당페이지로 이동하겠다는 거지 데이터 저장x),input type=button(x submit 이벤트 실행해줘야함)-->
+	<!--O button 타입/ input type=sumit(submit 이벤트 내장 ) -->
+	</form>
+	</div>
 </body>
 </html>

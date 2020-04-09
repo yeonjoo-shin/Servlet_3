@@ -92,7 +92,8 @@ public class PointDAO {
 		st.setInt(6,pointDTO.getTotal());
 		st.setDouble(7, pointDTO.getAvg());
 		System.out.println("save");
-		int result = st.executeUpdate();
+		
+		int result = st.executeUpdate();//전송 끝
 		System.out.println("save result");
 		st.close();
 		con.close();
@@ -100,6 +101,34 @@ public class PointDAO {
 		
 	}
 	//4. Update
+	public int pointMod(PointDTO pointDTO) throws Exception{
+		Connection con = DBConnect.getConnect();
+		String sql = "UPDATE point set name=?,num=?,kor=?,eng=?,math=?,total=?,avg=? where num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		//정보는 모든 것을 가져와야함
+		st.setString(1,pointDTO.getName());
+		st.setInt(2, pointDTO.getNum());
+		st.setInt(3, pointDTO.getKor());
+		st.setInt(4, pointDTO.getEng());
+		st.setInt(5,pointDTO.getMath());
+		st.setInt(6, pointDTO.getTotal());
+		st.setDouble(7, pointDTO.getAvg());
+		st.setInt(8, pointDTO.getNum());
+	
+		
+		System.out.println("save");
+		
+		int result=st.executeUpdate();
+		System.out.println("save result");//result 1이면 성공 
+
+		st.close();
+		con.close();
+		
+		return result;
+		
+	}
+	
 	
 	//5. Delete
 	public int pointDelete(int num)throws Exception{
