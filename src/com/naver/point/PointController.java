@@ -68,16 +68,25 @@ public class PointController extends HttpServlet {
 				
 				int result=pointService.pointAdd(pointDTO);
 				
+//				if(result>0) {
+//		               check = false;
+//		               path = "./pointList";
+//		            }else {
+//		               check = false;
+//		               path = "./pointList";
+//		            }
+				String msg ="점수 등록 실패";
+				
 				if(result>0) {
-		               check = false;
-		               path = "./pointList";
-		            }else {
-		               check = false;
-		               path = "./pointList";
-		            }
+					msg="점수 등록 성공";
+				}
+				
+				request.setAttribute("result",msg);
+				request.setAttribute("path","./pointList");
+				path = "../WEB-INF/views/common/result.jsp";
 				
 			}else {//GET
-				System.out.println("Point Input(점수입력창)");
+				
 				check=true;
 				path="../WEB-INF/views/point/pointAdd.jsp";
 				
@@ -97,16 +106,24 @@ public class PointController extends HttpServlet {
 				int result = pointService.pointMod(pointDTO);
 				
 				
-		         check = false;
-		         path = "./pointSelect?num="+pointDTO.getNum();
-		            
+		         String msg="점수 수정 실패";
+		        if(result>0) {
+		        	msg="점수 수정 성공";
+		        	request.setAttribute("path", "./pointSelect?num="+pointDTO.getNum());
+		        }else{
+		        	request.setAttribute("path","./pointList");
+		        	
+		        }
+		         request.setAttribute("result",msg);
+		         path="../WEB-INF/views/common/result.jsp";
 			}else {
 				check=true;
 				int num=Integer.parseInt(request.getParameter("num"));
 				PointDTO pointDTO = pointService.pointSelect(num);//선택페이지에서 번호를 기준으로 가져와서 넘기기
 				request.setAttribute("dto",pointDTO);
 				
-				path="../WEB-INF/views/point/pointMod.jsp";
+				path="../WEB-INF/views/point/pointMod.jsp"; //forwar로 보낼 주소
+				
 			}
 		}else if(command.equals("/pointSelect")) {
 			int num=Integer.parseInt(request.getParameter("num"));
