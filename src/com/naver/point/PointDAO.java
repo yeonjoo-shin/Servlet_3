@@ -106,9 +106,10 @@ public class PointDAO {
 		int result=0;
 		Connection con = DBConnect.getConnect();
 		String sql="delete point where num=?";
-		
 		PreparedStatement st = con.prepareStatement(sql);
+		
 		st.setInt(1, num);
+		
 		result = st.executeUpdate();
 		
 		st.close();
