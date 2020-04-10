@@ -19,6 +19,15 @@
   <url-pattern>/member/*</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  <servlet-name>notice</servlet-name>
+  <servlet-class>com.naver.notice.NoticeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>notice</servlet-name>
+  <url-pattern>/notice/*</url-pattern>
+  </servlet-mapping>
+  
   
  <servlet>
  <servlet-name>home</servlet-name>
