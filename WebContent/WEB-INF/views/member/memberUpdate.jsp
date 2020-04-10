@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp"></c:import>
 </head>
+
 <body>
-	
-<c:import url="../template/header.jsp"></c:import>
-	<div class="container">
-  <h2>Join Input</h2>
+	<c:import url="../template/header.jsp"></c:import>
+<div class="container">
+  <h2>my date update</h2>
   
-  <form action="./memberPage" method="post">
+  <form action="./memberUpdate" method="post">
   
     <div class="form-group">
       <label for="Id">ID:</label>
@@ -42,24 +42,15 @@
       <input type="text" class="form-control" id="phone" placeholder="Enter Phone" name="phone" value="${member.phone}" >
     </div>
     
-  
+     <input type="submit" class="btn btn-primary" id="up" > 
   </form>
   
-   <button class="btn btn-primary" id="up" > Update </button>
-   <button class="btn btn-danger" id="del" > Delete </button>
-   
    <script type="text/javascript">
-	$("#del").click(function () {
-		var result = window.confirm("탈퇴 하겠습니까?");
-		if(result){
-			location.href="./memberDelete";
-		}
-	});
 	
 	$("#up").click(function() {
 		var result = window.confirm("수정 하시겠습니까?");
 		if(result){
-			location.href="./memberUpdate"; //버튼을 누리면 update.jsp 페이지로 이동
+			location.href="./memberUpdate";
 		}
 		
 	});
@@ -70,7 +61,5 @@
    
 </div>
 	
-	
-	    
 </body>
 </html>
