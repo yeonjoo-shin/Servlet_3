@@ -31,8 +31,13 @@
 			</tr>			
 			</table>
 			<div>${dto.content}</div>
+			<c:if test="${not empty member}">
+			<c:if test="${ member.id eq 'admin2'}">
 			<a href="./noticeDelete?num=${dto.num }" class="btn btn-primary ">Delete</a>
 			<a href="./noticeMod?num=${dto.num }" class="btn btn-danger ">Update</a>
+			</c:if>
+			</c:if>
+			
 			</div>
 			</div>
 			
