@@ -60,17 +60,17 @@ public class NoticeController extends HttpServlet {
 			int num = Integer.parseInt(request.getParameter("num"));
 			NoticeDTO noticeDTO = noticeSevice.noticeSelect(num);
 			
-			HttpSession session = request.getSession();
-			session.setAttribute("dto",noticeDTO);
+			HttpSession session = request.getSession();//상세 정보를 담고있기위해
+			session.setAttribute("dto",noticeDTO);//상세정보 수정,삭제전까지 유지
 			
 			path="../WEB-INF/views/notice/noticeSelect.jsp";
 			
 		}else if(command.equals("/noticeAdd")) {
 			if(method.equals("POST")) {
-				HttpSession session = request.getSession();
+				HttpSession session = request.getSession();///추가정보담을거야
 				
 				MemberDTO memberDTO = new MemberDTO();
-				memberDTO = (MemberDTO) session.getAttribute("member");
+				memberDTO = (MemberDTO) session.getAttribute("member");//로그인한 사람정보 가져옴ㅁ
 				
 				NoticeDTO noticeDTO = new NoticeDTO();
 				
@@ -99,10 +99,11 @@ public class NoticeController extends HttpServlet {
 		}else if(command.equals("/noticeMod")) {
 			if(method.equals("POST")) {
 				NoticeDTO noticeDTO = new NoticeDTO();
-				HttpSession session = request.getSession();
-				noticeDTO = (NoticeDTO) session.getAttribute("dto");
+				
+				HttpSession session = request.getSession();//수정정보 담기위해
+				noticeDTO = (NoticeDTO) session.getAttribute("dto");//기존의 상세정보 가져올거야
 
-				//수정할 정보들
+				//객체에 수정할 정보들을 담아서
 				noticeDTO.setTitle(request.getParameter("title"));
 				noticeDTO.setContent(request.getParameter("content"));
 		
@@ -110,7 +111,7 @@ public class NoticeController extends HttpServlet {
 				System.out.println(noticeDTO.getContent());
 				System.out.println(noticeDTO.getNum());
 				
-				int result=noticeSevice.noticeMod(noticeDTO);
+				int result=noticeSevice.noticeMod(noticeDTO);//dto를 매개변수로 보내붐
 
 				String msg="수정 실패";
 				if(result>0) {
@@ -126,7 +127,7 @@ public class NoticeController extends HttpServlet {
 			
 				int num=Integer.parseInt(request.getParameter("num"));
 				NoticeDTO noticeDTO = noticeSevice.noticeSelect(num);//상세페이지에서 번호를 기준으로 가져와서 넘김
-				request.setAttribute("dto",noticeDTO);
+				request.setAttribute("dto",noticeDTO);//수정된 정보들을 다시 덮어서 보여줘
 				path="../WEB-INF/views/notice/noticeMod.jsp";
 
 			}
