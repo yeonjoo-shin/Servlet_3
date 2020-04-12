@@ -34,11 +34,14 @@
 				</c:forEach>
 			</table>
 			
-			<a href="./noticeAdd" class="btn btn-primary">NOTICE ADD</a>
+			
 		</div>
+		<c:if test="${not empty member}">
+		<c:if test="${ member.id eq 'admin2'}">
+			<a href="./noticeAdd" class="btn btn-primary">NOTICE ADD</a>
 		
-	
-	
+		</c:if>
+		</c:if>
 	</div>
 	
 </body>
