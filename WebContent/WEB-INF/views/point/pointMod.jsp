@@ -11,7 +11,7 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-</div>
+
 <div class="container">
   <h2>Point Mod</h2>
   <form action="./pointMod" method="post">

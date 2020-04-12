@@ -79,6 +79,7 @@ public class PointController extends HttpServlet {
 				
 				if(result>0) {
 					msg="점수 등록 성공";
+				
 				}
 				
 				request.setAttribute("result",msg);

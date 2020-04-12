@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.naver.member.MemberDTO;
 
 /**
  * Servlet implementation class NoticeController
@@ -56,10 +59,80 @@ public class NoticeController extends HttpServlet {
 			
 			int num = Integer.parseInt(request.getParameter("num"));
 			NoticeDTO noticeDTO = noticeSevice.noticeSelect(num);
-			request.setAttribute("dto",noticeDTO);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("dto",noticeDTO);
+			
 			path="../WEB-INF/views/notice/noticeSelect.jsp";
 			
-		}else {
+		}else if(command.equals("/noticeAdd")) {
+			if(method.equals("POST")) {
+				HttpSession session = request.getSession();
+				
+				MemberDTO memberDTO = new MemberDTO();
+				memberDTO = (MemberDTO) session.getAttribute("member");
+				
+				NoticeDTO noticeDTO = new NoticeDTO();
+				
+				noticeDTO.setTitle(request.getParameter("title"));
+				noticeDTO.setName(request.getParameter("name"));
+				noticeDTO.setContent(request.getParameter("content"));
+				
+				int result = noticeSevice.noticeAdd(noticeDTO);
+			
+				if(result>0) {
+					check=false;
+					path="./noticeList";
+				}
+					
+			}else {//get
+				check=true;
+				path="../WEB-INF/views/notice/noticeAdd.jsp";
+			}
+		}else if(command.equals("/noticeDelete")) {
+			int num=Integer.parseInt(request.getParameter("num"));
+			int result = noticeSevice.noticeDelete(num);
+			
+			check=false;
+			path="./noticeList";
+			
+		}else if(command.equals("/noticeMod")) {
+			if(method.equals("POST")) {
+				NoticeDTO noticeDTO = new NoticeDTO();
+				HttpSession session = request.getSession();
+				noticeDTO = (NoticeDTO) session.getAttribute("dto");
+
+				//수정할 정보들
+				noticeDTO.setTitle(request.getParameter("title"));
+				noticeDTO.setContent(request.getParameter("content"));
+		
+				System.out.println(noticeDTO.getTitle());
+				System.out.println(noticeDTO.getContent());
+				System.out.println(noticeDTO.getNum());
+				
+				int result=noticeSevice.noticeMod(noticeDTO);
+
+				String msg="수정 실패";
+				if(result>0) {
+					msg="수정 성공";
+					request.setAttribute("path","./noticeSelect?num="+noticeDTO.getNum());
+				}else {
+					request.setAttribute("path", "./noticeList");
+				}
+				request.setAttribute("result", msg);
+				path="../WEB-INF/views/common/result.jsp";
+				
+			}else {//get
+			
+				int num=Integer.parseInt(request.getParameter("num"));
+				NoticeDTO noticeDTO = noticeSevice.noticeSelect(num);//상세페이지에서 번호를 기준으로 가져와서 넘김
+				request.setAttribute("dto",noticeDTO);
+				path="../WEB-INF/views/notice/noticeMod.jsp";
+
+			}
+		}
+		
+		else {
 			
 		}
 		

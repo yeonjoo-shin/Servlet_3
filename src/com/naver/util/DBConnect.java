@@ -19,7 +19,7 @@ public class DBConnect {
 		//1. 로그인 정보 4개 기술
 		String user = "user02";
 		String password = "user02";
-		String url = "jdbc:oracle:thin:@192.168.160.3:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.56.102:1521:xe";
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		//2. 드라이버를 메모리에 로딩
 		Class.forName(driver);

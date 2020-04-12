@@ -31,7 +31,11 @@
 			</tr>			
 			</table>
 			<div>${dto.content}</div>
+			<a href="./noticeDelete?num=${dto.num }" class="btn btn-primary ">Delete</a>
+			<a href="./noticeMod?num=${dto.num }" class="btn btn-danger ">Update</a>
 			</div>
 			</div>
+			
+			
 </body>
 </html>

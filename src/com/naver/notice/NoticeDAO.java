@@ -61,4 +61,71 @@ public class NoticeDAO {
 		return noticeDTO;
 		
 	}
+	//Add
+	public int noticeAdd(NoticeDTO noticeDTO) throws Exception{
+		Connection con = DBConnect.getConnect();
+		
+		//쿼리문 작성
+		String sql = "insert into notice values(SEQ_NUM.nextval,?,?,sysdate,'0',?)";
+		//쿼리문 미리 전송
+		PreparedStatement st = con.prepareStatement(sql);
+		//? 값 세팅
+		st.setString(1, noticeDTO.getTitle());
+		st.setString(2, noticeDTO.getName());
+		st.setString(3, noticeDTO.getContent());
+		
+		int result = st.executeUpdate();//전송 끝
+		st.close();
+		con.close();
+		return result;
+		
+	}
+	
+	//delete
+	public int noticeDelete(int num) throws Exception{
+		Connection con = DBConnect.getConnect();
+		String sql="delete notice where num= ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, num);
+		
+		int result = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		return result;
+	}
+	
+	//Mod
+	public int noticeMod(NoticeDTO noticeDTO) throws Exception{
+		Connection con = DBConnect.getConnect();
+		String sql ="update notice set title=?,content=? where num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+	
+		st.setString(1, noticeDTO.getTitle());
+		st.setString(2, noticeDTO.getContent());
+		st.setInt(3, noticeDTO.getNum());
+		
+		int result = st.executeUpdate();
+		System.out.println("result"+result);
+
+		
+		st.close();
+		con.close();
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
