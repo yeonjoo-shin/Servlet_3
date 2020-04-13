@@ -12,7 +12,6 @@
 <body>
 	<c:import url="./template/header.jsp"></c:import>
      <!-- import 쓸때는 views 를 root로 인식해서 써야함 -->
-</div>
 	<h1>Add Point Branch (index page)</h1>
 </body>
 </html>

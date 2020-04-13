@@ -28,6 +28,35 @@
   <url-pattern>/notice/*</url-pattern>
   </servlet-mapping>
   
+  <filter>
+  <filter-name>encode</filter-name>
+  <filter-class>com.naver.filter.EncodingFilter</filter-class>
+  <init-param>
+  	<param-name>enc</param-name>
+  	<param-value>UTF-8</param-value>
+  </init-param>
+  </filter>
+  <filter-mapping>
+  <filter-name>encode</filter-name>
+  <url-pattern>/*</url-pattern><!-- ** 하위폴더 포함해서 전부다 -->
+  </filter-mapping>
+  
+  <filter>
+  <filter-name>admin</filter-name>
+  <filter-class>com.naver.filter.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  <filter-name>admin</filter-name>
+  <url-pattern>/notice/noticeAdd</url-pattern><!-- ** 하위폴더 포함해서 전부다 -->
+  </filter-mapping>
+  <filter-mapping>
+  <filter-name>admin</filter-name>
+  <url-pattern>/point/pointAdd</url-pattern><!-- ** 하위폴더 포함해서 전부다 -->
+  </filter-mapping>
+  
+  
+  
+  
   
  <servlet>
  <servlet-name>home</servlet-name>

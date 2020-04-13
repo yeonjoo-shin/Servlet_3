@@ -70,7 +70,7 @@ public class NoticeController extends HttpServlet {
 				HttpSession session = request.getSession();///추가정보담을거야
 				
 				MemberDTO memberDTO = new MemberDTO();
-				memberDTO = (MemberDTO) session.getAttribute("member");//로그인한 사람정보 가져옴ㅁ
+				memberDTO = (MemberDTO) session.getAttribute("member");//로그인한 사람정보 가져옴
 				
 				NoticeDTO noticeDTO = new NoticeDTO();
 				
