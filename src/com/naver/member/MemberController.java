@@ -106,8 +106,6 @@ public class MemberController extends HttpServlet {
 				check=false;
 				path="../";	
 				
-		}else if(command.equals("/memberSelectOne")) {
-			
 		}else if(command.equals("/memberPage")) {//내 정보
 	
 			path="../WEB-INF/views/member/memberPage.jsp";//forward방식
